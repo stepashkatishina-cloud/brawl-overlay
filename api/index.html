@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 300px;
+        }
+        h2 { margin: 0 0 10px 0; font-size: 18px; color: #ffcc00; }
+        p { margin: 5px 0; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div id="board">
+        <h2>Мой Brawl Board</h2>
+        <p id="name">Загрузка имени...</p>
+        <p id="trophies">Кубки: загрузка...</p>
+    </div>
+
+    <script>
+        async function updateStats() {
+            try {
+                const response = await fetch('/api/player');
+                const data = await response.json();
+                
+                document.getElementById('name').innerText = 'Игрок: ' + data.name;
+                document.getElementById('trophies').innerText = 'Кубки: 🏆 ' + data.trophies;
+            } catch (e) {
+                console.log('Ошибка загрузки статы');
+            }
+        }
+
+        updateStats();
+        setInterval(updateStats, 60000);
+    </script>
+</body>
+</html>
