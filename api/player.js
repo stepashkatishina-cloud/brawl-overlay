@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
-    const PLAYER_TAG = '%#POLCLJU8C'; 
+    const PLAYER_TAG = '%POLCLJU8C'; 
     const API_KEY = process.env.BRAWL_STARS_TOKEN;
 
     try {
